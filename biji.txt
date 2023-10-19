@@ -1,0 +1,47 @@
+## 小兔鲜项目
+
+### 1.创建项目
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_10-37-45.png)
+
+create-vue 是Vue3的脚手架工具
+
+1. 前端环境要求
+
+16.0 node.js 以上
+
+2. 创建一个Vue应用
+
+ npm init vue@latest
+
+ 这一指令将会安装并执行 create-vue
+
+3. 熟悉项目目录和关键文件
+
+   ![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_15-49-48.png)
+
+关键文件：
+
+1. vite.config.js - 项目的配置文件 基于vite的配置
+
+2. package.json - 项目包文件 核心依赖项变成了 Vue3.x 和 vite
+
+3. main.js - 入口文件 createApp函数创建应用实例
+
+4. app.vue - 根组件 SFC单文件组件 script - template - style
+
+   变化一：脚本script和模板template顺序调整
+
+   变化二：模板template不再要求唯一根元素
+
+   变化三：脚本script添加setup标识支持组合式API
+
+5. index.html - 单页入口 提供id为app的挂载点
+
+### 2.项目语法
+
+#### 组合式API - setup选项
+
+setup选项的写法和执行时机
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_15-57-04.png)
