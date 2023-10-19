@@ -44,4 +44,145 @@ create-vue 是Vue3的脚手架工具
 
 setup选项的写法和执行时机
 
-![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_15-57-04.png)
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_15-57-04.png) <script setup> 语法糖
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_17-34-15.png)
+
+######     总结
+
+1. setup选项的执行时机？
+
+beforeCreate钩子之前 自动执行
+
+2. setup写代码的特点是什么？
+
+定义数据 + 函数 然后以对象方式return
+
+3. <script setup>解决了什么问题？
+
+经过语法糖的封装更简单的使用组合式API
+
+4. setup中的this还指向组件实例吗？
+
+指向undefined
+
+#### reactive()
+
+**作用：**接受对象类型数据的参数传入并返回一个响应式的对象
+
+实现方法：
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_17-42-03.png)
+
+1. 从 vue 包中导入 reactive 函数
+
+2. 在 <script setup> 中执行 reactive 函数并传入类型为对象的初始值，并使用变量接收返回值
+
+#### ref()
+
+**作用：**接收简单类型或者对象类型的数据传入并返回一个响应式的对象
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_17-44-01.png)
+
+1. 从 vue 包中导入 ref 函数
+
+2. 在 <script setup> 中执行 ref 函数并传入初始值，使用变量接收 ref 函数的返回值
+
+###### 总结
+
+1. reactive和ref函数的共同作用是什么 ？
+
+用函数调用的方式生成响应式数据
+
+2. reactive vs ref ？
+   1. reactive不能处理简单类型的数据
+   2. ref参数类型支持更好但是必须通过.value访问修改
+   3. ref函数的内部实现依赖于reactive函数
+
+3. 在实际工作中推荐使用哪个？
+
+推荐使用ref函数，更加灵活，小兔鲜项目主用ref
+
+#### 组合式API - computed
+
+computed计算属性函数
+
+计算属性基本思想和Vue2的完全一致，组合式API下的计算属性只是修改了写法
+
+核心步骤：
+
+1. 导入computed函数
+
+2. 执行函数 在回调参数中return基于响应式数据做计算的值，用变量接收
+3. ![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_18-00-42.png)
+
+###### 总结
+
+1. 计算属性中不应该有“副作用”
+
+   **比如异步请求/修改dom**
+
+2. 避免直接修改计算属性的值
+
+   **计算属性应该是只读的**
+
+#### 组合式API - watch
+
+​	作用: 侦听一个或者多个数据的变化，数据变化时执行回调函数，
+
+​	俩个额外参数：
+
+1. immediate（立即执行） 
+2. deep（深度侦听）
+
+**基础使用 - 侦听单个数据**
+
+1. 导入watch函数
+
+2. 执行watch函数传入要侦听的响应式数据(ref对象)和回调函数
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_18-14-38.png)
+
+基础使用 - **侦听多个数据**
+
+​	说明：同时侦听多个响应式数据的变化，不管哪个数据变化都需要执行回调
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_18-15-32.png)
+
+**immediate**
+
+​	说明：在侦听器创建时立即触发回调, 响应式数据变化之后继续执行回调
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_18-16-11.png)
+
+**deep**
+
+默认机制：通过watch监听的ref对象默认是浅层侦听的，直接修改嵌套的对象属性不会触发回调执行，需要开启deep
+
+​	选项
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_18-17-23.png)
+
+**精确侦听对象的某个属性**
+
+​	需求：在不开启deep的前提下，侦听age的变化，只有age变化时才执行回调
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-10-19_18-18-31.png)
+
+###### 总结
+
+1. 作为watch函数的第一个参数，ref对象需要添加.value吗？
+
+   不需要，watch会自动读取
+
+2. watch只能侦听单个数据吗？
+
+   单个或者多个
+
+3. 不开启deep，直接修改嵌套属性能触发回调吗？
+
+   不能，默认是浅层侦听
+
+4. 不开启deep，想在某个层次比较深的属性变化时执行回调怎么做？
+
+   可以把第一个参数写成函数的写法，返回要监听的具体属性
