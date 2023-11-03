@@ -186,3 +186,25 @@ computed计算属性函数
 4. 不开启deep，想在某个层次比较深的属性变化时执行回调怎么做？
 
    可以把第一个参数写成函数的写法，返回要监听的具体属性
+
+### 3. pinia的使用
+
+​			storeToRefs API 只能对数据类的响应式解构（state + getter）
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-11-03_14-35-48.png)
+
+1. **Pinia是用来做什么的？**
+
+集中状态管理工具，新一代的vuex
+
+2. **Pinia中还需要mutation吗？**
+
+不需要，action既支持同步也支持异步
+
+3. **Pinia如何实现getter？**
+
+computed计算属性函数
+
+4. **Pinia产生的Store如何解构赋值数据保持响应式？**
+
+storeToRefs
