@@ -2,8 +2,7 @@
 // useCounterStore
   import { storeToRefs } from "pinia"
 import { useCounterStore } from "./stores/counter.js"
-
-
+// import HelloWorld from "@/";
   const counterStroe = useCounterStore()
   // console.log(counterStroe)
   const { count, doublecount } = storeToRefs(counterStroe)
@@ -11,6 +10,7 @@ import { useCounterStore } from "./stores/counter.js"
 
 <template>
   <div>
+ 
     <button @click="counterStroe.increament">
     {{ count }}
   </button>

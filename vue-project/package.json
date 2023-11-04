@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^1.6.0",
+    "element-plus": "^2.4.2",
     "pinia": "^2.1.7",
     "pnpm": "^8.10.2",
     "vue": "^3.3.4",
@@ -19,6 +20,8 @@
     "@vitejs/plugin-vue": "^4.3.4",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
+    "unplugin-auto-import": "^0.16.7",
+    "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.9"
   }
 }
