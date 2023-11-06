@@ -6,6 +6,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 // 3 挂载应用
 // 应用实例必须在调用了 .mount() 方法后才会渲染出来。
+// import './styles/element/index.scss'
 // 1. 导入createpinia
 import { createPinia } from "pinia"
 // 2.执行方法得到实例

@@ -207,4 +207,24 @@ computed计算属性函数
 
 4. **Pinia产生的Store如何解构赋值数据保持响应式？**
 
-storeToRefs
+##### storeToRefs
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-11-03_14-35-48.png)
+
+### 4.element-plus 主题定制
+
+如何定制（scss变量替换方案）
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-11-04_15-25-02.png)
+
+1. 安装sass 
+
+```js
+npm i sass -d
+```
+
+2. 准备定制化的样式文件
+
+   新建一个样式文件，例如 `styles/element/index.scss`：
+
+3. 
