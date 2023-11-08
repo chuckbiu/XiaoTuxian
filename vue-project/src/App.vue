@@ -18,6 +18,7 @@ import { useCounterStore } from "./stores/counter.js"
 
 <template>
   <div>
+    <router-view></router-view>
     <el-button type="primary">Primary</el-button>
     <button @click="counterStroe.increament">
     {{ count }}
