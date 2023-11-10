@@ -8,33 +8,17 @@ import { useCounterStore } from "./stores/counter.js"
   const counterStroe = useCounterStore()
   // console.log(counterStroe)
   const { count, doublecount } = storeToRefs(counterStroe)
-  
-  onMounted:{
-    getList().then((res) => {
-      console.log(res)
-    })
-  }
 </script>
 
 <template>
   <div>
     <router-view></router-view>
-    <el-button type="primary">Primary</el-button>
-    <button @click="counterStroe.increament">
-    {{ count }}
-  </button>
-    <button >
-    {{ doublecount }}
-  </button>
-  <button @click="counterStroe.loadList">
-    获取数据
-  </button>
-  {{ counterStroe.list }}
+ 
   </div>
  
 
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+  
 </style>
