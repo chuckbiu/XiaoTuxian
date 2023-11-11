@@ -1,21 +1,17 @@
 <script setup>
-  import { getList } from "@/apis/home"
-  import { onMounted, ref } from "vue"
+
+  import { useCounterStore } from "@/stores/category";
+  import { ref } from "vue";
+  const { navLists } = useCounterStore()
+  console.log(navLists)
   const navList = ref([])
-  const getListData = async () => {
-    const res = await getList()
-    console.log(res)
-    navList.value = res.data.result
-  }
-  onMounted( 
-    () =>{
-      getListData()
-  })
+  navList.value = navLists
 </script>
 
 <template>
   <header class='app-header'>
     <div class="container">
+      
       <h1 class="logo">
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>

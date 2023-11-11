@@ -6,5 +6,6 @@
 <style lang="scss" scoped>
     .home {
         color: $helpColor;
+        height: 1200px;
     }
 </style>

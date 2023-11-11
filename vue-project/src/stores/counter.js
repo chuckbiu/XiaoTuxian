@@ -15,7 +15,7 @@ export const useCounterStore = defineStore("counter", () => {
     return count.value * 2;
   });
   // 定义异步action
-  const API_URL = "https://geek.itheima.net/v1_0/channels";
+  // const API_URL = "https://geek.itheima.net/v1_0/channels";
   //准备数据(state)
   const list = ref([]);
 

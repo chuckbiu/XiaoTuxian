@@ -1,4 +1,4 @@
-import './assets/main.css'
+// import './assets/main.css'
 import './styles/common.scss'
 // 1 每个 Vue 应用都是通过 createApp 函数创建一个新的 应用实例
 import { createApp } from 'vue'

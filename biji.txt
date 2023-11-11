@@ -228,3 +228,11 @@ npm i sass -d
    新建一个样式文件，例如 `styles/element/index.scss`：
 
 3. 
+
+## 使用工具 VueUse
+
+
+
+#### pinia优化思想
+
+![](D:\learn\项目\rabbit_chuck_vue3\biji_img\Snipaste_2023-11-11_22-57-48.png)
