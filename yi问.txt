@@ -1,0 +1,4 @@
+## 1 为啥pinia结构出来的对象是proxy 
+
+## 2 为啥proxy放在网页上就可以显示出里面的值 打印出来value却是unfinded
+

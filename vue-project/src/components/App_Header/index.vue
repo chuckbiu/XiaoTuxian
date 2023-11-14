@@ -19,7 +19,7 @@
         <li class="home" >
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li class="home" v-for="(item, index) in navList" :key="index"> <RouterLink to="/" >{{ item.name }}</RouterLink> </li>
+        <li class="home" v-for="(item, index) in navLists" :key="index"> <RouterLink to="/" >{{ item.name }}</RouterLink> </li>
         <!-- <li> <RouterLink to="/">美食</RouterLink> </li>
         <li> <RouterLink to="/">服饰</RouterLink> </li> -->
       </ul>
