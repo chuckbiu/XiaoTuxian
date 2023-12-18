@@ -2,10 +2,10 @@
 
   import { useCounterStore } from "@/stores/category";
   import { ref } from "vue";
-  const { navLists } = useCounterStore()
-  console.log(navLists)
-  const navList = ref([])
-  navList.value = navLists
+  const categoryStore = useCounterStore()
+  // console.log(navLists)
+  // const navList = ref([])
+  // navList.value = navLists
 </script>
 
 <template>
@@ -19,7 +19,7 @@
         <li class="home" >
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li class="home" v-for="(item, index) in navLists" :key="index"> <RouterLink to="/" >{{ item.name }}</RouterLink> </li>
+        <li class="home" v-for="(item, index) in categoryStore.navLists" :key="index"> <RouterLink to="/" >{{ item.name }}</RouterLink> </li>
         <!-- <li> <RouterLink to="/">美食</RouterLink> </li>
         <li> <RouterLink to="/">服饰</RouterLink> </li> -->
       </ul>

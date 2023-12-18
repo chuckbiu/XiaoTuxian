@@ -22,5 +22,8 @@
     .home {
         color: $helpColor;
         height: 1200px;
+        .container{
+            display: flex;
+        }
     }
 </style>

@@ -6,3 +6,17 @@ export function getList() {
         url: 'home/category/head'
     })
 }
+// 获取-二级分类列表
+export function getSecondList(params) {
+    return instance({
+        url: `category/${params.id}`,
+        method: 'get'
+    })
+}
+// 获取轮播图数据
+export function getBannerList() {
+    return instance({
+        url: 'home/banner',
+        method: 'get'
+    })
+}

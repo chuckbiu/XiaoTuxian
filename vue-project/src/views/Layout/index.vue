@@ -4,8 +4,6 @@
         <App_TopNav/>
         <App_Header_sticky></App_Header_sticky>
         <app_-header></app_-header>
-        
-        首页
         <router-view></router-view>
         <App_Footer/>
     </div>
@@ -23,6 +21,5 @@
     const { getListData } = counterStore
     onMounted(()=>{
         counterStore.getListData()
-        
     })
 </script>
