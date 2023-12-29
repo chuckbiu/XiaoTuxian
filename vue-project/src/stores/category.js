@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { getList, getSecondList, getBannerList } from "@/apis/home"
+import { getList, getSecondList, getBannerList, findNewAPI } from "@/apis/home"
 export const useCounterStore = defineStore("category", () => {
     // 获取分类列表
     const navLists = ref([])
@@ -23,12 +23,21 @@ export const useCounterStore = defineStore("category", () => {
         const res = await getBannerList()
         Bannerlist.value = res.data.result
     }
+    // 获取新鲜好物
+    const newList = ref([])
+
+    const getNewListData = async () => {
+        const res = await findNewAPI()
+        newList.value = res.data.result
+    }
     return {
         navLists,
         getListData,
         categorySecondlist,
         getSecondListData,
         Bannerlist,
-        getBannerListData
+        getBannerListData,
+        newList,
+        getNewListData
     };
 });
