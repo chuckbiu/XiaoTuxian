@@ -25,7 +25,8 @@ export const router = createRouter({
                     component: Home
                 },
                 {
-                    path: '/category',
+                    //使用占位符
+                    path: '/category/:id',
                     name: 'Category',
                     component: Category
                 }

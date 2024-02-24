@@ -1,40 +1,42 @@
 <script setup>
-
-  import { useCounterStore } from "@/stores/category";
-  import { ref } from "vue";
-  const categoryStore = useCounterStore()
-  // console.log(navLists)
-  // const navList = ref([])
-  // navList.value = navLists
+import { useCounterStore } from "@/stores/category";
+import { ref } from "vue";
+const categoryStore = useCounterStore();
+// console.log(navLists)
+// const navList = ref([])
+// navList.value = navLists
 </script>
 
 <template>
-  <header class='app-header'>
+  <header class="app-header">
     <div class="container">
-      
       <h1 class="logo">
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
       <ul class="app-header-nav">
-        <li class="home" >
+        <li class="home">
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li class="home" v-for="(item, index) in categoryStore.navLists" :key="index"> <RouterLink to="/" >{{ item.name }}</RouterLink> </li>
+        <li
+          class="home"
+          v-for="(item, index) in categoryStore.navLists"
+          :key="index"
+        >
+          <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
+        </li>
         <!-- <li> <RouterLink to="/">美食</RouterLink> </li>
         <li> <RouterLink to="/">服饰</RouterLink> </li> -->
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
-        <input type="text" placeholder="搜一搜">
+        <input type="text" placeholder="搜一搜" />
       </div>
       <!-- 头部购物车 -->
-      
     </div>
   </header>
 </template>
 
-
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .app-header {
   background: #fff;
 
@@ -51,7 +53,8 @@
       height: 132px;
       width: 100%;
       text-indent: -9999px;
-      background: url('@/assets/images/logo.png') no-repeat center 18px / contain;
+      background: url("@/assets/images/logo.png") no-repeat center 18px /
+        contain;
     }
   }
 
@@ -61,24 +64,24 @@
     padding-left: 40px;
     position: relative;
     z-index: 998;
-  
+
     li {
       margin-right: 40px;
       width: 38px;
       text-align: center;
-  
+
       a {
         font-size: 16px;
         line-height: 32px;
         height: 32px;
         display: inline-block;
-  
+
         &:hover {
           color: $xtxColor;
           border-bottom: 1px solid $xtxColor;
         }
       }
-  
+
       .active {
         color: $xtxColor;
         border-bottom: 1px solid $xtxColor;
