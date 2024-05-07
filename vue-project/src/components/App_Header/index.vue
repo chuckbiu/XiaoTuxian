@@ -22,7 +22,7 @@ const categoryStore = useCounterStore();
           v-for="(item, index) in categoryStore.navLists"
           :key="index"
         >
-          <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
+          <RouterLink :to="`/category/${item.id}`" :key="item.id">{{ item.name }}</RouterLink>
         </li>
         <!-- <li> <RouterLink to="/">美食</RouterLink> </li>
         <li> <RouterLink to="/">服饰</RouterLink> </li> -->
