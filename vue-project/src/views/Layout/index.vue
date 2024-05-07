@@ -4,7 +4,8 @@
         <App_TopNav/>
         <App_Header_sticky></App_Header_sticky>
         <app_-header></app_-header>
-        <router-view></router-view>
+        <!-- 路由缓存解决问题之一 :key="$route.fullPath"  -->
+        <router-view ></router-view>
         <App_Footer/>
     </div>
 </template>

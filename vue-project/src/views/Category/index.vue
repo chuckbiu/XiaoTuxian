@@ -2,8 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { getTopCategoryAPI } from '@/apis/category'
 import { getBannerAPI } from '@/apis/category'
-import { useRoute, useRouter } from 'vue-router'
-
+import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
+import GoodsItem from '@/components/GoodsItem/index.vue'
 // 获取banner
 const bannerList = ref([])
 const categoryData = ref({})
@@ -14,6 +14,7 @@ const route = useRoute()
 const getCategory = async (id) => {
   // 如何在setup中获取路由参数 useRoute() -> route 等价于this.$route
   const res = await getTopCategoryAPI(id)
+  console.log(res.data.result)
   categoryData.value = res.data.result
 }
 const getBanner = async () => {
@@ -26,9 +27,10 @@ const getBanner = async () => {
 
 getCategory(route.params.id)
 onMounted(() => getBanner())
+onBeforeRouteUpdate((to)=>{
+  getCategory(to.params.id)
+})
 
-
-console.log(route.params.id)
 </script>
 
 <template>
@@ -66,7 +68,8 @@ console.log(route.params.id)
           <h3>- {{ item.name }}-</h3>
         </div>
         <div class="body">
-          <GoodsItem v-for="good in item.goods" :goods="good" :key="good.id" />
+          
+          <GoodsItem v-for="good in item.goods" :good="good" :key="good.id" />
         </div>
       </div>
     </div>
