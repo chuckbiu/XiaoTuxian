@@ -1,35 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { getTopCategoryAPI } from '@/apis/category'
-import { getBannerAPI } from '@/apis/category'
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import GoodsItem from '@/components/GoodsItem/index.vue'
+import { useBanner } from './composables/useBanner.vue'
+import { useCategory } from './composables/useCategory.vue'
+
 // 获取banner
-const bannerList = ref([])
-const categoryData = ref({})
-const route = useRoute()
+const {bannerList} = useBanner()
+const {categoryData} = useCategory()
 
-
-
-const getCategory = async (id) => {
-  // 如何在setup中获取路由参数 useRoute() -> route 等价于this.$route
-  const res = await getTopCategoryAPI(id)
-  console.log(res.data.result)
-  categoryData.value = res.data.result
-}
-const getBanner = async () => {
-  const res = await getBannerAPI({
-    distributionSite: '2'
-  })
-  console.log(res)
-  bannerList.value = res.data.result
-}
-
-getCategory(route.params.id)
-onMounted(() => getBanner())
-onBeforeRouteUpdate((to)=>{
-  getCategory(to.params.id)
-})
 
 </script>
 
@@ -56,7 +33,7 @@ onBeforeRouteUpdate((to)=>{
         <h3>全部分类</h3>
         <ul>
           <li v-for="i in categoryData.children" :key="i.id">
-            <RouterLink to="/">
+            <RouterLink :to="`/category/sub/${i.id}`">
               <img :src="i.picture" />
               <p>{{ i.name }}</p>
             </RouterLink>
@@ -68,7 +45,7 @@ onBeforeRouteUpdate((to)=>{
           <h3>- {{ item.name }}-</h3>
         </div>
         <div class="body">
-          
+
           <GoodsItem v-for="good in item.goods" :good="good" :key="good.id" />
         </div>
       </div>
