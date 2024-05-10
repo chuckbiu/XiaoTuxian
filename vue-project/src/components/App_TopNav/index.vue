@@ -1,5 +1,5 @@
 <script setup>
-
+  import { router } from '@/router'
 </script>
 
 <template>
@@ -9,11 +9,12 @@
         <template v-if="true">
           <li><a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a></li>
           <li>
-            <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
+            <!-- <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
               <template #reference>
                 <a href="javascript:;">退出登录</a>
               </template>
-            </el-popconfirm>
+            </el-popconfirm> -->
+            <a href="javascript:;" @click="router.push('/login')">请先登录</a>
           </li>
           <li><a href="javascript:;">我的订单</a></li>
           <li><a href="javascript:;">会员中心</a></li>
