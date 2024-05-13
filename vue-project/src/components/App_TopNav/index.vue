@@ -1,26 +1,36 @@
 <script setup>
   import { router } from '@/router'
+  import { useCounterStore } from "@/stores/login"
+
+  const useUserstore = useCounterStore()
+
+ // 退出时清除用户信息
+ const clearUserInfo = () => {
+  useUserstore.clearUserInfo()
+  // console.log()
+  // useUserstore.userinfo.value = {}
+  }
 </script>
 
 <template>
   <nav class="app-topnav">
     <div class="container">
       <ul>
-        <template v-if="true">
-          <li><a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a></li>
+        <template v-if="useCounterStore().userinfo.token">
+          <li><a href="javascript:;"><i class="iconfont icon-user"></i>{{ useCounterStore().userinfo.nickname }}</a></li>
           <li>
-            <!-- <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
+            <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消" @confirm="clearUserInfo">
               <template #reference>
                 <a href="javascript:;">退出登录</a>
               </template>
-            </el-popconfirm> -->
-            <a href="javascript:;" @click="router.push('/login')">请先登录</a>
+            </el-popconfirm>
+            <!-- <a href="javascript:;" @click="router.push('/login')" v-if="!useCounterStore().userinfo.token">请先登录</a> -->
           </li>
           <li><a href="javascript:;">我的订单</a></li>
           <li><a href="javascript:;">会员中心</a></li>
         </template>
         <template v-else>
-          <li><a href="javascript:;">请先登录</a></li>
+          <li><a href="javascript:;" @click="router.push('/login')" >请先登录</a></li>
           <li><a href="javascript:;">帮助中心</a></li>
           <li><a href="javascript:;">关于我们</a></li>
         </template>

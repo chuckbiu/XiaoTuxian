@@ -12,6 +12,7 @@
     "axios": "^1.6.0",
     "element-plus": "^2.4.2",
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "pnpm": "^8.10.2",
     "sass": "^1.69.5",
     "vue": "^3.3.4",

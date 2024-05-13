@@ -1,7 +1,11 @@
 <script setup>
 import { useCounterStore } from "@/stores/category";
 import { ref } from "vue";
+import CartCar from '@/components/CartCar/index.vue'
+
+
 const categoryStore = useCounterStore();
+
 // console.log(navLists)
 // const navList = ref([])
 // navList.value = navLists
@@ -33,6 +37,9 @@ const categoryStore = useCounterStore();
         <input type="text" placeholder="搜一搜" />
       </div>
       <!-- 头部购物车 -->
+      <CartCar/>
+
+
     </div>
   </header>
 </template>

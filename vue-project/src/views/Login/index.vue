@@ -6,15 +6,15 @@ import {router } from '@/router'
 // import { loginAPI } from '@/apis/login'
 import { useCounterStore} from '@/stores/login'
 // 表单实例
-
 const formRef = ref(null)
 // 表单数据对象
 const userInfo = ref({
-  account: '1311111111',
-  password: '123456',
+  account: 'heima282',
+  password: 'hm#qd@23!',
   agree: true
 })
-
+// stores
+const Store = useCounterStore()
 // 规则数据对象
 const rules = {
   account: [
@@ -42,18 +42,19 @@ const doLogin = () => {
   // 调用实例方法
   formRef.value.validate(async (valid) => {
     // valid: 所有表单都通过校验  才为true
-    console.log(valid)
     // 以valid做为判断条件 如果通过校验才执行登录逻辑
     if (valid) {
-      console.log()
       // TODO LOGIN
-      useCounterStore().getLoginData({ account, password })
+      await useCounterStore().getLoginData({ account, password })
+      const  {userinfo: {token}} = JSON.parse(localStorage.getItem('userinfo'))
       // const res =  await loginAPI({ account, password })
-      console.log(res)
       // 1. 提示用户
-      ElMessage({ type: 'success', message: '登录成功' })
-      // 2. 跳转首页
-      router.replace({ path: '/' })
+      if (token){
+        ElMessage({ type: 'success', message: '登录成功' })
+        // 2. 跳转首页
+        router.replace({ path: '/' })
+      }
+   
     }
   })
 }
