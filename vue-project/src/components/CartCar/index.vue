@@ -3,37 +3,19 @@
   import { onMounted, computed } from 'vue';
   const useCart = useCartStore()
 
-  const { cartList } = useCart
+  const { cartList} = useCart
 
-  // 总价
-  const totalPrice = computed(() => {
-    let totalPrice = 0;
-    cartList.map((item)=> {
-      totalPrice+=(item.price * 1) * (item.count)
-    })
-     return totalPrice
-  })
-  // 数量
-   const total = computed(()=>
-   {
-
-    let total = 0
-     cartList.map((item)=> {
-      total += item.count
-    })
-    return total
-   })
 </script>
 
 <template>
   <div class="cart">
     <a class="curr" href="javascript:;">
-      <i class="iconfont icon-cart" ></i><em v-if="cartList.length != 0">{{ total }}</em>
+      <i class="iconfont icon-cart" ></i><em v-if="useCart.cartList.length != 0">{{ useCart.total }}</em>
     </a>
     <div class="layer">
       <div class="list">
         
-        <div class="item" v-for="i in cartList" :key="i">
+        <div class="item" v-for="i in useCart.cartList" :key="i">
           <RouterLink to="">
             <img :src="i.picture" alt="" />
             <div class="center">
@@ -53,8 +35,8 @@
       </div>
       <div class="foot">
         <div class="total">
-          <p>共 {{ total || 0}} 件商品</p>
-          <p>&yen; {{totalPrice || 0.00}} </p>
+          <p>共 {{ useCart.total || 0}} 件商品</p>
+          <p>&yen; {{useCart.totalPrice || 0.00}} </p>
         </div>
         <el-button size="large" type="primary" @click="$router.push('/CartList')" >去购物车结算</el-button>
       </div>

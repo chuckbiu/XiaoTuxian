@@ -6,7 +6,7 @@ import Category from '@/views/Category/index.vue'
 import SubCategory from '@/views/Category/SubCategory/index.vue'
 import Detail from '@/views/Detail/index.vue'
 import CartList from '@/views/CartList/index.vue'
-
+import OrderPage from "@/views/OrderPage/index.vue"
 export const router = createRouter({
     // 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
     // history: VueRouter.createWebHashHistory(),
@@ -49,6 +49,13 @@ export const router = createRouter({
                     path: '/CartList',
                     name: 'CartList',
                     component: CartList
+                },
+ 
+                {
+                    //使用占位符
+                    path: '/OrderPage',
+                    name: 'OrderPage',
+                    component: OrderPage
                 },
             ]
         }

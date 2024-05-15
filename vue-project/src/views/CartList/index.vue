@@ -10,15 +10,19 @@ const selectClick = (e, i) => {
 const allCheck = (e) => {
   cartStore.allcartList(e)
 }
+const allCount = ref(0)
+
 watch(cartStore.cartList,(newValue,oldValue)=>{
-    console.log('cartList变化了',newValue,oldValue)
     const array = JSON.parse(JSON.stringify(newValue))
+    let start = 0
     allbtn.value = true
     array.map((i)=>{
       if (i.selected == false){
         allbtn.value = false
       }
+      start+=i.count
     })
+    allCount.value = start
   },{deep:true, immediate: true})
 </script>
 
@@ -61,14 +65,14 @@ watch(cartStore.cartList,(newValue,oldValue)=>{
                 <p>&yen;{{ i.price }}</p>
               </td>
               <td class="tc">
-                <el-input-number v-model="i.count" />
+                <el-input-number v-model="i.count" :min="1"/>
               </td>
               <td class="tc">
                 <p class="f16 red">&yen;{{ (i.price * i.count).toFixed(2) }}</p>
               </td>
               <td class="tc">
                 <p>
-                  <el-popconfirm title="确认删除吗?" confirm-button-text="确认" cancel-button-text="取消" @confirm="delCart(i)">
+                  <el-popconfirm title="确认删除吗?" confirm-button-text="确认" cancel-button-text="取消" @confirm="cartStore.delCart(i.skuId)">
                     <template #reference>
                       <a href="javascript:;">删除</a>
                     </template>
@@ -92,8 +96,8 @@ watch(cartStore.cartList,(newValue,oldValue)=>{
       <!-- 操作栏 -->
       <div class="action">
         <div class="batch">
-          共 10 件商品，已选择 2 件，商品合计：
-          <span class="red">¥ 200.00 </span>
+          共 {{allCount}} 件商品，已选择 {{ cartStore.selectedCount || 0 }}  件，商品合计：
+          <span class="red">¥ {{ cartStore.selectedPrice || 0}} </span>
         </div>
         <div class="total">
           <el-button size="large" type="primary" >下单结算</el-button>

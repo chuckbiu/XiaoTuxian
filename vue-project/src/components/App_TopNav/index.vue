@@ -1,14 +1,16 @@
 <script setup>
   import { router } from '@/router'
   import { useCounterStore } from "@/stores/login"
-
+  import { useCartStore } from '@/stores/cart'
   const useUserstore = useCounterStore()
-
+  const CartStore = useCartStore()
  // 退出时清除用户信息
  const clearUserInfo = () => {
+  // 清空用户信息
   useUserstore.clearUserInfo()
-  // console.log()
-  // useUserstore.userinfo.value = {}
+  // 同时清空购物车数据
+  CartStore.clearCart()
+  router.push('/login')
   }
 </script>
 
