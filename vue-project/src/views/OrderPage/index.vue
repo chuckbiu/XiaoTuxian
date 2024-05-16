@@ -1,7 +1,53 @@
 <script setup>
-const checkInfo = {}  // 订单对象
-const curAddress = {}  // 地址对象
+import { getCheckoutInfoAPI, createOrderAPI } from '@/apis/order'
+import { onMounted, ref } from 'vue';
 
+onMounted(()=>{
+  reqGetordermes()
+})
+
+const checkInfo = ref({})  // 订单对象
+const curAddress = ref({})  // 地址对象
+const toggleFlag = ref(false)  // 切换弹窗
+const activeAddress = ref({}) // 选中地址对象
+
+const reqGetordermes = async () => {
+  const res = await getCheckoutInfoAPI()
+  checkInfo.value = res.data.result
+  curAddress.value = res.data.result.userAddresses[0]
+}
+
+const itemtoggleClick = async (res) => {
+  activeAddress.value = res
+}
+
+const taggleConfirm = () => {
+  toggleFlag.value = false
+  curAddress.value = activeAddress.value
+}
+
+const confireOrder = async () => {
+  const res = await createOrderAPI({
+    deliveryTimeType: 1,
+    payType: 1,
+    payChannel: 1,
+    buyerMessage: '',
+    goods: checkInfo.value.goods.map(item => {
+      return {
+        skuId: item.skuId,
+        count: item.count
+      }
+    }),
+    addressId: curAddress.value.id
+  })
+  const orderId = res.result.id
+  router.push({
+    path: '/OrderPay',
+    query: {
+      id: orderId
+    }
+  })
+}
 </script>
 
 <template>
@@ -96,13 +142,31 @@ const curAddress = {}  // 地址对象
         </div>
         <!-- 提交订单 -->
         <div class="submit">
-          <el-button type="primary" size="large" >提交订单</el-button>
+          <el-button type="primary" size="large" @click="confireOrder">提交订单</el-button>
         </div>
       </div>
     </div>
   </div>
   <!-- 切换地址 -->
+  <el-dialog title="切换收货地址" width="30%" center v-model="toggleFlag">
+    <div class="addressWrapper">
+      <div class="text item" v-for="item in checkInfo.userAddresses"  :key="item.id" :class="{active: activeAddress.id == item.id}" @click="itemtoggleClick(item)">
+        <ul>
+        <li><span>收<i />货<i />人：</span>{{ item.receiver }} </li>
+        <li><span>联系方式：</span>{{ item.contact }}</li>
+        <li><span>收货地址：</span>{{ item.fullLocation + item.address }}</li>
+        </ul>
+      </div>
+    </div>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="toggleFlag = false">取消</el-button>
+        <el-button type="primary" @click="taggleConfirm">确定</el-button>
+      </span>
+    </template>
+</el-dialog>
   <!-- 添加地址 -->
+
 </template>
 
 <style scoped lang="scss">

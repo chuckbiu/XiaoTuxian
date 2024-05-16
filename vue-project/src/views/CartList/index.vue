@@ -1,7 +1,7 @@
 <script setup>
 import { useCartStore } from '@/stores/cart'
 import { ref, watch } from 'vue';
-
+import  { router } from '@/router'
 const cartStore = useCartStore()
 let allbtn = ref(false)
 const selectClick = (e, i) => {
@@ -100,7 +100,7 @@ watch(cartStore.cartList,(newValue,oldValue)=>{
           <span class="red">¥ {{ cartStore.selectedPrice || 0}} </span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary" >下单结算</el-button>
+          <el-button size="large" type="primary" @click="router.push('/OrderPage')">下单结算</el-button>
         </div>
       </div>
     </div>
