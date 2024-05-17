@@ -1,6 +1,10 @@
 ## 1 为啥pinia结构出来的对象是proxy 
 
+Pinia 是一个 Vue.js 状态管理库，它使用了 ES6 的 Proxy 对象来实现状态的响应式更新。
 
+在 Pinia 中，状态是由一些 store 对象表示的。每个 store 对象都有一个 state 属性，它代表着这个 store 的状态。当我们对这个 state 进行修改时，Pinia 会通过 Proxy 拦截这个操作，并且通知 Vue.js 去更新组件的渲染。
+
+所以，Pinia 结构出来的对象是 Proxy 对象，是为了实现状态的响应式更新。
 
 ## 2 为啥proxy放在网页上就可以显示出里面的值 打印出来value却是unfinded
 
