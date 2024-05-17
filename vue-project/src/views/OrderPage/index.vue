@@ -1,6 +1,9 @@
 <script setup>
 import { getCheckoutInfoAPI, createOrderAPI } from '@/apis/order'
 import { onMounted, ref } from 'vue';
+import { router} from '@/router'
+import { useCartStore } from '@/stores/cart'
+
 
 onMounted(()=>{
   reqGetordermes()
@@ -40,13 +43,15 @@ const confireOrder = async () => {
     }),
     addressId: curAddress.value.id
   })
-  const orderId = res.result.id
+  
+  const orderId = res.data.result.id
   router.push({
     path: '/OrderPay',
     query: {
       id: orderId
     }
   })
+  useCartStore().getCartlist()
 }
 </script>
 

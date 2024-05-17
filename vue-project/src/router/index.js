@@ -8,6 +8,12 @@ import Detail from '@/views/Detail/index.vue'
 import CartList from '@/views/CartList/index.vue'
 import OrderPage from "@/views/OrderPage/index.vue"
 import OrderPay from '@/views/OrderPay/index.vue'
+import PayBack from '@/views/OrderPay/PayBack/index.vue'
+import Member from '@/views/Member/index.vue'
+import MemberInfo from '@/views/Member/components/UserInfo.vue'
+import MemberOrder from '@/views/Member/components/UserOrder.vue'
+
+
 
 export const router = createRouter({
     // 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
@@ -52,7 +58,7 @@ export const router = createRouter({
                     name: 'CartList',
                     component: CartList
                 },
- 
+
                 {
                     //使用占位符
                     path: '/OrderPage',
@@ -64,27 +70,45 @@ export const router = createRouter({
                     name: 'OrderPay',
                     component: OrderPay
                 },
+                {
+                    path: 'paycallback', // 注意路径，必须是paycallback
+                    component: PayBack
+                },
+                {
+                    path: '/member',
+                    component: Member,
+                    children: [
+                        {
+                            path: 'user',
+                            component: MemberInfo
+                        },
+                        {
+                            path: 'order',
+                            component: MemberOrder
+                        }
+                    ]
+                },
             ]
         }
     ], // `routes: routes` 的缩写
     // 实现定制路由滚动行为
-    scrollBehavior(to, from, savedPosition){   
+    scrollBehavior(to, from, savedPosition) {
         // 如果有 savedPosition，直接返回保存的滚动位置
-    // if (savedPosition) {
-    //     return savedPosition;
-    //   }
-    //   // 如果目标路由配置了scrollToTop为true，则滚动到页面顶部
-    //   if (to.meta.scrollToTop) {
-    //     return { top: 0 };
-    //   }
-    //   // 如果目标路由中存在锚点，则滚动到锚点位置
-    //   if (to.hash) {
-    //     return { selector: to.hash };
-    //   }
+        // if (savedPosition) {
+        //     return savedPosition;
+        //   }
+        //   // 如果目标路由配置了scrollToTop为true，则滚动到页面顶部
+        //   if (to.meta.scrollToTop) {
+        //     return { top: 0 };
+        //   }
+        //   // 如果目标路由中存在锚点，则滚动到锚点位置
+        //   if (to.hash) {
+        //     return { selector: to.hash };
+        //   }
 
 
 
         // 默认情况下滚动到页面顶部
         return { left: 0, top: 0 };
-    }   
+    }
 })

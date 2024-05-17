@@ -19,7 +19,7 @@ export const createOrderAPI = (data) => {
     })
   }
   export const getOrderAPI = (id) => {
-    return request({
+    return instance({
       url: `/member/order/${id}`
     })
   }
