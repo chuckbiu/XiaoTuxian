@@ -27,17 +27,23 @@ const total = ref(0)
 
 
 const tabChange = (type) => {
+  console.log(type)
   params.value.orderState = type
   getOrderList()
 }
 
 const getOrderList = async () => {
   const res = await getUserOrder(params.value)
+  console.log(res.data.result)
   orderList.value = res.data.result.items
   total.value = res.data.result.counts
 }
 
-
+// 页数切换
+const pageChange = (page) => {
+  params.value.page = page
+  getOrderList()
+}
 
 onMounted(() => getOrderList())
 
@@ -46,7 +52,7 @@ onMounted(() => getOrderList())
 
 <template>
   <div class="order-container">
-    <el-tabs>
+    <el-tabs @tab-change="tabChange">
       <!-- tab切换 -->
       <el-tab-pane v-for="item in tabTypes" :key="item.name" :label="item.label" />
 
